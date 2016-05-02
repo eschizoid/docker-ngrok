@@ -1,9 +1,11 @@
-# Note: The newer busybox:glibc is missing libpthread.so.0.
-FROM busybox:ubuntu-14.04
+FROM armv7/armhf-ubuntu
 MAINTAINER Werner Beroux <werner@beroux.com>
 
+RUN apt-get update \
+ &&  apt-get install -y --no-install-recommends unzip
+
 # Install ngrok (latest official stable from https://ngrok.com/download).
-ADD https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip /ngrok.zip
+ADD https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip /ngrok.zip
 RUN set -x \
  && unzip -o ngrok.zip -d /bin \
  && rm -f /ngrok.zip
